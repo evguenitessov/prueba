@@ -12,31 +12,125 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main(void) {
-	// Declaracion de variables
-	 int numero,cantidad,contador;
-	 int hora = time(NULL);
+void vaciarVector(int vec[4]);
+void llenarVectorAleatorio(int vec[4]);
+void mostrarVector(int vec[4]);
+void separarNumero(int numero, int vec[4]);
+int determinarCorrectas(int vec1[4], int vec2[4]);
+int determinarRegulares(int vec1[4], int vec2[4]);
+void jugar(int vec1[4], int vec2[4], int *cantidadIntentos);
 
-	 // Semilla de rand();
-	 srand(hora);
+int main(void)
+{
+	int hora, vec1[4], vec2[4], cantidadIntentos = 1;
 
-	 /* Recogemos por teclado la cantidad de
-		numeros que quiere el usuario */
+	hora = time(NULL);
+	srand(hora);
 
-		printf("Ingrese la cantidad de numeros aleatorios que desea generar\n");
-		scanf("%d",&cantidad);
+	vaciarVector(vec1);
+	vaciarVector(vec2);
+	llenarVectorAleatorio(vec1);
+	mostrarVector(vec1);
+	jugar(vec1, vec2, &cantidadIntentos);
 
-		/* Generamos un ciclo que se repite la cantidad
-		   de veces indicada. En cada vuelta del ciclo se
-		   genera y se imprime un numero aleatorio. */
-
-		for(contador = 0; contador<cantidad; contador++)
-		{
-
-			   numero = rand();
-			   numero = numero%10;
-			   printf("%d ", numero);
-		}
+	if (cantidadIntentos == 11)
+		printf("\nUsted ha perdido.");
 
 	return EXIT_SUCCESS;
+}
+
+void vaciarVector(int vec[4])
+{
+	int i;
+
+	for (i = 0; i < 4; i++)
+		vec[i] = 0;
+}
+
+void llenarVectorAleatorio(int vec[4])
+{
+	int i, j, num, dupl;
+
+	 for (i = 0; i < 4; i++)
+	 {
+		 num = rand() % 10;
+		 dupl = 0;
+
+		 for (j = 0; j <= i; j++)
+			 if (num == vec[j]){
+				dupl = 1;
+				break;
+			 }
+
+		 if (dupl == 1)
+			i--;
+		 else
+			vec[i] = num;
+	 }
+}
+
+void mostrarVector(int vec1[4])
+{
+	int i;
+
+	for(i = 0; i < 4; i++)
+		printf("%d	", vec1[i]);
+}
+
+void separarNumero(int numero, int vec[4])
+{
+	vec[3] = numero%10;
+	vec[2] = (numero%100-numero%10)/10;
+	vec[1] = (numero%1000-numero%100)/100;
+	vec[0] = (numero%10000-numero%1000)/1000;
+}
+
+int determinarCorrectas(int vec1[4], int vec2[4])
+{
+	int i, cantidadCorrectas = 0;
+
+	for (i = 0; i < 4; i++)
+		if (vec1[i] == vec2[i])
+			cantidadCorrectas++;
+
+	return cantidadCorrectas;
+}
+
+int determinarRegulares(int vec1[4], int vec2[4])
+{
+	int i, j, cantidadRegulares = 0;
+
+	for (i = 0; i < 4; i++)
+		for (j = 0; j < 4; j++)
+			if ((i != j) && (vec1[i] == vec2[j]))
+				cantidadRegulares++;
+
+	return cantidadRegulares;
+}
+
+void jugar(int vec1[4], int vec2[4], int *cantidadIntentos)
+{
+	int numero, cantidadCorrectas;
+
+	while(*cantidadIntentos < 11)
+	{
+		printf("\nIngrese un valor de 4 digitos: ");
+		scanf("%d", &numero);
+
+		separarNumero(numero, vec2);
+		mostrarVector(vec2);
+
+		cantidadCorrectas = determinarCorrectas(vec1, vec2);
+
+		printf("\nLa cantidad de correctas es: %d", cantidadCorrectas);
+		printf("\nLa cantidad de regulares es: %d",	determinarRegulares(vec1, vec2));
+
+		if (cantidadCorrectas == 4)
+		{
+			printf("\nUsted adivinó el numero!!!");
+			break;
+		}
+
+		(*cantidadIntentos)++;
+	}
 }

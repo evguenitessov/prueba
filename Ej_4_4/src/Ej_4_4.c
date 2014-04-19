@@ -1,7 +1,7 @@
 /*
  ============================================================================
  Name        : Ej_4_4.c
- Author      : 
+ Author      : Euge
  Version     :
  Copyright   : Your copyright notice
  Description : Hello World in C, Ansi-style
@@ -12,29 +12,32 @@
 #include <stdlib.h>
 #include <string.h>
 
-void strInver(char *c);
+void palabraInversa(char palabra[4]);
 
 int main(void)
 {
-	char *c, vec1[5];
+	char palabra[4];
 
 	printf("Ingrese una palabra: ");
-	gets(vec1);
+	gets(palabra);
 
-	c = vec1;
-	strInver(c);
+	palabraInversa(palabra);
 
 	return EXIT_SUCCESS;
 }
 
-void strInver(char *c)
+void palabraInversa(char palabra[4])
 {
-	int i;
-	char vec2[5];
+	int longitud, i, j = 0;
+	char palabra2[4];
 
-	for (i = 3; i >= 0; i--)
-		vec2[i] = *c++;
+	longitud = strlen(palabra);
 
-	for (i = 0; i <= 4; i++)
-		printf("%c", vec2[i]);
+	for (i = longitud; i >= 0; i--)
+	{
+		palabra2[j] = palabra[i];
+		j++;
+	}
+
+	printf("La palabra inversa es: %s", palabra2);
 }
