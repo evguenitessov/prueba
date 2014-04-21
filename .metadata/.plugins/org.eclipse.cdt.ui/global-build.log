@@ -1,16 +1,9 @@
-22:57:54 **** Clean-only build of configuration Debug for project Ej_6_56 ****
-make clean 
-rm -rf  ./src/Ej_6_56.o  ./src/Ej_6_56.d  Ej_6_56
- 
-22:57:54 **** Build of configuration Debug for project Ej_6_56 ****
+18:15:02 **** Incremental Build of configuration Debug for project PruebaTestUnitario ****
 make all 
-Building file: ../src/Ej_6_56.c
-Invoking: GCC C Compiler
-gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Ej_6_56.d" -MT"src/Ej_6_56.d" -o "src/Ej_6_56.o" "../src/Ej_6_56.c"
-Finished building: ../src/Ej_6_56.c
- 
-Building target: Ej_6_56
-Invoking: GCC C Linker
-gcc  -o "Ej_6_56"  ./src/Ej_6_56.o   
-Finished building target: Ej_6_56
- 
+make: No se hace nada para «all».
+18:15:06 **** Incremental Build of configuration Debug for project PruebaTestUnitario ****
+make all 
+make: No se hace nada para «all».
+18:15:38 **** Incremental Build of configuration Debug for project PruebaTestUnitario ****
+make all 
+make: No se hace nada para «all».

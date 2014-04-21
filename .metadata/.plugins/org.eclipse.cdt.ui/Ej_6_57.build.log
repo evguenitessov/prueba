@@ -1,0 +1,15 @@
+12:13:38 **** Incremental Build of configuration Debug for project Ej_6_57 ****
+make all 
+Building file: ../src/Ej_6_57.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Ej_6_57.d" -MT"src/Ej_6_57.d" -o "src/Ej_6_57.o" "../src/Ej_6_57.c"
+Finished building: ../src/Ej_6_57.c
+ 
+Building target: Ej_6_57
+Invoking: GCC C Linker
+gcc  -o "Ej_6_57"  ./src/Ej_6_57.o   
+Finished building target: Ej_6_57
+ 
+
+12:13:39 Build Finished (took 285ms)
+

@@ -74,6 +74,7 @@ void mostrarVector(int vec1[4])
 {
 	int i;
 
+	printf("\n");
 	for(i = 0; i < 4; i++)
 		printf("%d	", vec1[i]);
 }
@@ -92,7 +93,10 @@ int determinarCorrectas(int vec1[4], int vec2[4])
 
 	for (i = 0; i < 4; i++)
 		if (vec1[i] == vec2[i])
+		{
+			printf("\nEl numero %d esta en la posicion correcta.", vec1[i]);
 			cantidadCorrectas++;
+		}
 
 	return cantidadCorrectas;
 }
@@ -104,7 +108,10 @@ int determinarRegulares(int vec1[4], int vec2[4])
 	for (i = 0; i < 4; i++)
 		for (j = 0; j < 4; j++)
 			if ((i != j) && (vec1[i] == vec2[j]))
+			{
+				printf("\nEl numero %d esta en la posicion incorrecta.", vec1[i]);
 				cantidadRegulares++;
+			}
 
 	return cantidadRegulares;
 }
@@ -115,11 +122,10 @@ void jugar(int vec1[4], int vec2[4], int *cantidadIntentos)
 
 	while(*cantidadIntentos < 11)
 	{
-		printf("\nIngrese un valor de 4 digitos: ");
+		printf("\n\nIngrese un valor de 4 digitos: \n");
 		scanf("%d", &numero);
 
 		separarNumero(numero, vec2);
-		mostrarVector(vec2);
 
 		cantidadCorrectas = determinarCorrectas(vec1, vec2);
 
